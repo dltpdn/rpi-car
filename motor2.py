@@ -32,12 +32,8 @@ pwm_left2.start(0)
 pwm_right1.start(0)
 pwm_right2.start(0)
 
-def setDC(dc):
-    pwm_left1.ChangeDutyCycle(dc)
-    pwm_left2.ChangeDutyCycle(dc)
-    pwm_right1.ChangeDutyCycle(dc)
-    pwm_right2.ChangeDutyCycle(dc)
-
+def setDC(value):
+    dc = value
 
 def foward():
     pwm_left1.ChangeDutyCycle(dc)
