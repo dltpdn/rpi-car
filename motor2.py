@@ -37,32 +37,33 @@ def setDC(value):
 
 def foward():
     pwm_left1.ChangeDutyCycle(dc)
-    GPIO.output(pin_left2, False)
+    pwm_left2.ChangeDutyCycle(0)
     pwm_right1.ChangeDutyCycle(dc)
-    GPIO.output(pin_right2, False)
+    pwm_right2.ChangeDutyCycle(0)
+
 def stop():
-    GPIO.output(pin_left1, False)
-    GPIO.output(pin_left2, False)
-    GPIO.output(pin_right1, False)
-    GPIO.output(pin_right2, False)
+    pwm_left1.ChangeDutyCycle(0)
+    pwm_left2.ChangeDutyCycle(0)
+    pwm_right1.ChangeDutyCycle(0)
+    pwm_right2.ChangeDutyCycle(0)
 
 def backward():
-    GPIO.output(pin_left1, False)
+    pwm_left1.ChangeDutyCycle(0)
     pwm_left2.ChangeDutyCycle(dc)
-    GPIO.output(pin_right1, False)
+    pwm_right1.ChangeDutyCycle(0)
     pwm_right2.ChangeDutyCycle(dc)
 
 def turn_left():
-    GPIO.output(pin_left1, False)
-    GPIO.output(pin_left2, False)
+    pwm_left1.ChangeDutyCycle(0)
+    pwm_left2.ChangeDutyCycle(0)
     pwm_right1.ChangeDutyCycle(dc)
-    GPIO.output(pin_right2, False)
+    pwm_right2.ChangeDutyCycle(0)
     
 def turn_right():
     pwm_right1.ChangeDutyCycle(dc)
-    GPIO.output(pin_left2, False)
-    GPIO.output(pin_right1, False)
-    GPIO.output(pin_right2, False)
+    pwm_left2.ChangeDutyCycle(0)
+    pwm_right1.ChangeDutyCycle(0)
+    pwm_right2.ChangeDutyCycle(0)
 
 def cleanup():
     pwm_left1.stop()
