@@ -33,6 +33,7 @@ pwm_right1.start(0)
 pwm_right2.start(0)
 
 def setDC(value):
+    global dc
     dc = value
 
 def foward():
