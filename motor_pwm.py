@@ -83,7 +83,7 @@ if __name__ == '__main__':
                 speed = input("speed (0 ~100) :")
                 setDC(speed)
             elif menu == 8:
-                foward()
+                forward()
             elif menu == 4:
                 turn_left()
             elif menu == 6:

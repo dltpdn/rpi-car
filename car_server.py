@@ -4,16 +4,14 @@ import numpy as np
 import cv2, time, os
 from datetime import datetime
 
-
-
 server = socket(AF_INET, SOCK_STREAM)
 server.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
 server.bind(('', 1234))
 server.listen(1)
-
 print "server listening on 1234..."
 conn, addr = server.accept()
 print 'client connected.', addr
+
 basepath = './capture_srv/'
 if not os.path.exists(basepath):
     os.mkdir(basepath)

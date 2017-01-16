@@ -7,22 +7,16 @@ import base64
 import picamera
 import io
 
-
-
 WIDTH = 128
 HEIGHT = 128
 host = 'localhost'
 stop_distance = 10
-
 running = True
 
 trig_pin = 24
 echo_pin = 23 
 distance = 0
 start_time = 0
-
-
-
     
 def recv():
     while running:
@@ -96,4 +90,3 @@ finally:
     running = False
     mt.cleanup()
     socket.close()
-    # When everything done, release the capture
