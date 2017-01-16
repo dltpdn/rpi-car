@@ -1,4 +1,6 @@
 import RPi.GPIO as GPIO
+import time
+import threading
 
 pin_left1 = 19
 pin_left2 = 26
@@ -9,6 +11,7 @@ pin_right2 = 20
 #pin_right_pwm = 12
 hz = 50  
 dc = 35 #duty-cycle 0~100
+period = 1
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(pin_left1, GPIO.OUT)
@@ -36,35 +39,62 @@ def setDC(value):
     global dc
     dc = value
 
-def forward():
+
+
+def forward_t():
     pwm_left1.ChangeDutyCycle(dc)
     pwm_left2.ChangeDutyCycle(0)
     pwm_right1.ChangeDutyCycle(dc)
     pwm_right2.ChangeDutyCycle(0)
+    time.sleep(period)
+    stop()
 
+def forward():
+    th = threading.Thread(target=forward_t)
+    th.start()
+
+def backward_t():
+    pwm_left1.ChangeDutyCycle(0)
+    pwm_left2.ChangeDutyCycle(dc)
+    pwm_right1.ChangeDutyCycle(0)
+    pwm_right2.ChangeDutyCycle(dc)
+    time.sleep(period)
+    stop()
+
+def backward():
+    th = threading.Thread(target=backward_t)
+    th.start()
+
+def turn_left_t():
+    pwm_left1.ChangeDutyCycle(0)
+    pwm_left2.ChangeDutyCycle(0)
+    pwm_right1.ChangeDutyCycle(dc + 10)
+    pwm_right2.ChangeDutyCycle(0)
+    time.sleep(period)
+    stop()
+
+def turn_left():
+    th = threading.Thread(target=turn_left_t)
+    th.start()
+    
+def turn_right_t():
+    pwm_left1.ChangeDutyCycle(dc + 10)
+    pwm_left2.ChangeDutyCycle(0)
+    pwm_right1.ChangeDutyCycle(0)
+    pwm_right2.ChangeDutyCycle(0)
+    time.sleep(period)
+    stop()
+
+def turn_right():
+    th = threading.Thread(target=turn_right_t)
+    th.start()
+    
 def stop():
     pwm_left1.ChangeDutyCycle(0)
     pwm_left2.ChangeDutyCycle(0)
     pwm_right1.ChangeDutyCycle(0)
     pwm_right2.ChangeDutyCycle(0)
 
-def backward():
-    pwm_left1.ChangeDutyCycle(0)
-    pwm_left2.ChangeDutyCycle(dc)
-    pwm_right1.ChangeDutyCycle(0)
-    pwm_right2.ChangeDutyCycle(dc)
-
-def turn_left():
-    pwm_left1.ChangeDutyCycle(0)
-    pwm_left2.ChangeDutyCycle(0)
-    pwm_right1.ChangeDutyCycle(dc + 10)
-    pwm_right2.ChangeDutyCycle(0)
-    
-def turn_right():
-    pwm_left1.ChangeDutyCycle(dc + 10)
-    pwm_left2.ChangeDutyCycle(0)
-    pwm_right1.ChangeDutyCycle(0)
-    pwm_right2.ChangeDutyCycle(0)
 
 def cleanup():
     pwm_left1.stop()

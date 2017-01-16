@@ -26,7 +26,7 @@ try:
             #print b64
             img = base64.decodestring(b64)
             image = cv2.imdecode(np.fromstring(img, dtype=np.uint8), cv2.CV_LOAD_IMAGE_UNCHANGED)
-            cv2.imshow('image', image)
+            cv2.imshow('server', image)
             cv2.waitKey(1)
             first = -1
             last = -1
