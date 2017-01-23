@@ -17,6 +17,7 @@ trig_pin = 24
 echo_pin = 23 
 distance = 0
 start_time = 0
+period = 1
     
 def recv():
     while running:
@@ -108,8 +109,8 @@ try:
                         print 'stop'
                         mt.stop()
                     break
-            print 'standing by...'
-            time.sleep(1)   
+            time.sleep(period)
+            mt.stop()   
 finally:
     running = False
     mt.cleanup()
