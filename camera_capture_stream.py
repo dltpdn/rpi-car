@@ -17,6 +17,6 @@ with picamera.PiCamera() as camera:
     print b64
     
     img2 = base64.decodestring(b64)
-    image = cv2.imdecode(np.fromstring(img2, dtype=np.uint8), cv2.CV_LOAD_IMAGE_UNCHANGED)
+    image = cv2.imdecode(np.fromstring(img2, dtype=np.uint8), cv2.IMREAD_UNCHANGED)
     cv2.imshow('image', image)
     cv2.waitKey(0)
