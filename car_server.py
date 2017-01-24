@@ -35,7 +35,7 @@ try:
             img = base64.decodestring(b64)
             image = cv2.imdecode(np.fromstring(img, dtype=np.uint8), cv2.CV_LOAD_IMAGE_UNCHANGED)
             cv2.imshow('server', image)
-            key = cv2.waitKey(1) & 0xFF
+            key = cv2.waitKey(0) & 0xFF
             if key == ord('q'): 
                 break
             elif key in [ord('h') , ord('j'), ord('k'), ord('l'), ord(' ')] :
