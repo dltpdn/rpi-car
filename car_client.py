@@ -9,7 +9,7 @@ import io
 
 WIDTH = 128
 HEIGHT = 128
-host = 'localhost'
+host = '192.168.200.4'
 stop_distance = 10
 running = True
 

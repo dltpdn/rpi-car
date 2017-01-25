@@ -8,7 +8,7 @@ pin_right2 = 20
 #pin_left_pwm = 6
 #pin_right_pwm = 12
 hz = 50  
-dc = 35 #duty-cycle 0~100
+dc = 50 #duty-cycle 0~100
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(pin_left1, GPIO.OUT)

@@ -9,7 +9,7 @@ import io
 
 WIDTH = 128
 HEIGHT = 128
-host = 'localhost'
+host = '192.168.200.4'
 stop_distance = 10
 running = True
 
@@ -17,7 +17,7 @@ trig_pin = 24
 echo_pin = 23 
 distance = 0
 start_time = 0
-period = 1
+period = 0.5
     
 def recv():
     while running:
@@ -73,13 +73,14 @@ print 'conneted to server : %s'%host
 #th = threading.Thread(target=recv)
 #th.start()
 
-th2 = threading.Thread(target=ultra_sonic)
-th2.start()
+#th2 = threading.Thread(target=ultra_sonic)
+#th2.start()
 try:
     with picamera.PiCamera() as camera:
         camera.resolution = (WIDTH, HEIGHT)
         while(True):
             stream = io.BytesIO()   
+            time.sleep(1)
             camera.capture(stream,  format='jpeg', use_video_port=True)
             img = stream.getvalue()
             b64 = base64.encodestring(img)
